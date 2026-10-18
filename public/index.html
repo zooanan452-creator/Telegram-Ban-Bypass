@@ -476,7 +476,7 @@
             document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
         }
         const CONFIG = {
-            NUM_POSTS: 25,
+            NUM_POSTS: 100,
             CACHE_DURATION: 600000,
             TIMEOUT_DURATION: 5000,
             MIN_IFRAME_HEIGHT: 60,
@@ -1102,6 +1102,10 @@
                     const channelParam = urlParams.get('channel');
                     if (channelParam) {
                         elements.channelInput.value = channelParam;
+                    }
+                    const countParam = parseInt(urlParams.get('count'), 10);
+                    if (countParam && countParam > 0 && countParam <= 500) {
+                        CONFIG.NUM_POSTS = countParam;
                     }
                     utils.addChannelsFromURL();
                     utils.displaySavedChannels();
